@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'pages/display.dart';
+import 'package:flutter_components/pages/components/datatable.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Components',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: const DisplayComponents(title: 'Components'),
+      // home: const DisplayComponents(title: 'Components'),
+      home: const DatatableYetu(
+        title: "Searching...",
+      ),
     );
   }
 }
