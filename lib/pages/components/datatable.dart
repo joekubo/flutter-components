@@ -12,6 +12,7 @@ class DatatableYetu extends StatefulWidget {
 class _DatatableYetuState extends State<DatatableYetu> {
   bool sort = false;
   List<User> users = [];
+  List<User> selectedUsers = [];
 
   @override
   void initState() {
@@ -32,9 +33,15 @@ class _DatatableYetuState extends State<DatatableYetu> {
       }
     }
 
-    // onSelectedRow(bool selected, User user) {
-
-    // }
+    onSelectedRow(bool selected, User user) async {
+      setState(() {
+        if (selected) {
+          selectedUsers.add(user);
+        } else {
+          selectedUsers.remove(user);
+        }
+      });
+    }
 
     DataTable dataBody() {
       return DataTable(
@@ -61,10 +68,10 @@ class _DatatableYetuState extends State<DatatableYetu> {
         rows: users
             .map(
               (users) => DataRow(
-                selected: true,
+                selected: selectedUsers.contains(users),
                 onSelectChanged: (b) {
                   print("OnSelect");
-                  // onSelectedRow(b, users);
+                  onSelectedRow(b!, users);
                 },
                 cells: [
                   DataCell(
